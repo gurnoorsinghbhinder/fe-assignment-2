@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login.brevo.com</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="loginBg">
+        <img class="brevoLogo" src="asset/brevoLogo.png" alt="logo">
+        <div class="loginMain">
+            <h2>Log In</h2>
+            <div class="validationError" id="validationError">
+                <p><span><img class="cross" src="asset/cross.png" alt=""></span>Incorrect email address or password.</p>
+            </div>
+            <div class="myForm">
+               <form id="myForm" action="/login" method="POST">
+
+                    <div class="emailForm">
+                        <label for="email">Email address <span class="asterisk">*</span></label>
+                        <input type="text" id="email" name="email">
+                        <div id="emailValidation">Please enter a valid email address.</div>
+                    </div>
+
+                    <div class="passwordForm">
+                        <label for="password">Password <span class="asterisk">*</span></label>
+                        <input type="password" id="password" name="password">
+                        <div id="emptyPassword">Password cannot be blank.</div>
+                        <div id="passwordValidation">Password should be minimum 8 characters, with at least one capital letter and one number.</div>
+                    </div>
+
+                    <button class="logIn" type="submit">Log In</button>
+                    <hr class="afterLoginHr">
+                    <div>
+                        <button class="signIn" type="button" onclick="signInWithGoogle()">
+                          <img src="asset/googleLogo.png"  alt="google logo" >
+                            Sign in with Google
+                        </button>
+                        <button id="signInBtn" class="signIn" type="button" onclick="signInWithApple()">
+                            <img src="asset/appleLogo.png" alt="apple logo" >
+                            Sign in with Apple</button>
+                    </div>
+
+                    </form>
+
+            </div>
+     
+        </div>
+
+        <div class="lowbars">
+            <a href="https://onboarding.brevo.com/account/register" class="createAcc">Create an account</a>
+            <a href="https://login.brevo.com/forgot-password" class="forgotPassword">I forgot my password</a>
+        </div>
+
+    </div>
+    
+</body>
+</html>
