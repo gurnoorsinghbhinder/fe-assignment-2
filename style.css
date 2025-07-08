@@ -1,184 +1,209 @@
-
 :root {
-
-    --primary-bg: #faf5e3;
-    --secondary-bg: white;
-    --error-bg: #ffecee;
     --border-color: #cfcfcf;
     --border-light: #e3e3e3;
-    --text-primary: black;
-    --text-error: #ff3a51;
-    --text-required: red;
-    
-
-    --spacing-xs: 5px;
-    --spacing-sm: 10px;
-    --spacing-md: 15px;
-    --spacing-lg: 20px;
-    
-
-    --radius-sm: 10px;
-    --radius-md: 15px;
-    
-
+    --error-bg: #ffecee;
+    --font-bold: bold;
     --font-light: 300;
     --font-normal: 400;
-    --font-bold: bold;
-    
-
-    --logo-width: 180px;
+    --font-ultralight: 100;
+    --form-max-width: 90vw;
+    --form-mobile-width: 100vw;
     --form-width: 500px;
-    --icon-size: 20px;
-    --input-min-height: 30px;
     --hr-height: 1px;
-}
-
-* {
-    padding: 0px;
-    margin: 0px;
-    font-family: 'Roboto', 'system-ui', '-apple-system', sans-serif;
-    font-weight: var(--font-light);
+    --icon-size: 20px;
+    --input-very-min-height:20px;
+    --input-min-height: 30px;
+    --logo-width: 180px;
+    --mobile-breakpoint: 500px;
+    --primary-bg: #faf5e3;
+    --radius-md: 15px;
+    --radius-sm: 10px;
+    --secondary-bg: white;
+    --spacing-lg: 20px;
+    --spacing-md: 15px;
+    --spacing-sm: 10px;
+    --spacing-xs: 5px;
+    --text-error: #ff3a51;
+    --text-primary: black;
+    --text-required: red;
 }
 
 body {
     background-color: var(--primary-bg);
+    font-family: 'Roboto', 'system-ui', '-apple-system', sans-serif;
+    font-weight: var(--font-light);
+    
 }
 
-.loginBg {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.required_field {
+    color: var(--text-required);
+    font-weight: var(--font-normal);
+    margin: var(--spacing-md) 0px;
 }
 
-.brevoLogo {
+.after_login_horizontal {
+    background-color: var(--border-color);
+    border: none;
+    height: var(--hr-height);
+    margin: var(--spacing-lg);
+}
+
+.brevo_logo {
+    margin: var(--spacing-lg);
     width: var(--logo-width);
-    margin: var(--spacing-sm);
 }
 
-.loginMain {
-    width: var(--form-width);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-md);
-    background-color: var(--secondary-bg);
-    padding: var(--spacing-sm);
-}
-
-.loginMain h2 {
-    text-align: center;
-}
-
-.loginMain hr {
-    padding: 0px;
-}
-
-form {
+button {
+    align-items: center;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
 }
 
-form * {
-    padding: var(--spacing-sm) 0px;
-    margin: var(--spacing-xs);
-    font-weight: var(--font-bold);
+.error_icon {
+    margin: 0px var(--spacing-sm);
+    width: var(--icon-size);
 }
 
-.myForm div {
-    display: flex;
-    flex-direction: column;
-}
-
-.emailForm *,
-.passwordForm * {
-    margin: var(--spacing-xs);
+.create_account .forgot_password {
+    margin: var(--spacing-lg) var(--spacing-sm);
 }
 
 input {
     border: solid 1px var(--border-color);
     border-radius: var(--radius-sm);
-    padding: var(--spacing-sm);
+    font-size: medium;
     font-weight: var(--font-normal);
     min-height: var(--input-min-height);
-    font-size: medium;
+    padding: var(--spacing-xs);
 }
 
-button {
-    display: flex;
+.login_background {
     align-items: center;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
 
-.logIn {
-    background-color: var(--text-primary);
-    color: var(--secondary-bg);
-    border: none;
-    border-radius: var(--radius-md);
-    margin: var(--spacing-lg);
-}
-
-.signIn {
+.login_container {
     background-color: var(--secondary-bg);
-    border: solid 1px var(--border-color);
+    border: 1px solid var(--border-light);
     border-radius: var(--radius-md);
+    max-width: var(--form-max-width);
+    padding: var(--spacing-sm);
+    width: var(--form-width);
 }
 
-.signIn img {
-    width: var(--icon-size);
-    margin: 0px var(--spacing-sm);
+.login_container h3 {
+    font-weight: var(--font-normal);
+    margin: var(--spacing-sm);
+    text-align: center;
+}
+
+.login_container hr {
     padding: 0px;
 }
 
-.afterLoginHr {
-    margin: var(--spacing-lg);
-    height: var(--hr-height);
+.log_in_button {
+    background-color: var(--text-primary);
     border: none;
-    background-color: var(--border-color);
-}
-
-.lowbars {
-    margin: var(--spacing-lg);
-}
-
-.lowbars * {
-    margin: var(--spacing-lg) var(--spacing-sm);
-}
-
-.lowbars a {
-    color: var(--text-primary);
-}
-
-.asterisk {
-    color: var(--text-required);
-    font-weight: var(--font-normal);
-    margin: 0px;
-}
-
-.validationError {
-    border: none;
-    background-color: var(--error-bg);
-    min-height: var(--input-min-height);
+    border-radius: var(--radius-md);
+    color: var(--secondary-bg);
+    font-weight: var(--font-bold);
+    margin: var(--spacing-lg) 0px;
     padding: var(--spacing-sm);
+    font-size: medium;
+}
+
+.navigation_links {
+    margin: var(--spacing-lg);
+}
+
+.navigation_links a {
+    color: var(--text-primary);
+    font-weight: var(--font-normal);
+    margin: var(--spacing-sm);
+}
+
+.form_wrapper div {
+    display: flex;
+    flex-direction: column;
+    margin: var(--spacing-xs);
+}
+
+.social_sign_in {
+    background-color: var(--secondary-bg);
+    border: solid 1px var(--border-color);
+    border-radius: var(--radius-md);
+    margin: var(--spacing-sm) 0px;
+    padding: var(--spacing-sm);
+    font-weight: var(--font-bold);
+    font-size: medium;
+}
+
+.social_sign_in img {
+    margin: 0px var(--spacing-lg);
+    padding: 0px;
+    width: var(--icon-size);
+
+}
+
+.social_sign_in_buttons {
+    margin: var(--spacing-lg) 0px;
+    padding: var(--spacing-sm);
+}
+
+.validation_error {
+    background-color: var(--error-bg);
+    border: none;
     border-radius: var(--radius-sm);
     display: none;
-    margin-top: var(--spacing-sm);
+    padding: var(--spacing-xs);
 }
 
-.validationError p {
-    display: flex;
+.validation_error p {
     align-items: center;
-}
+    display: flex;
 
-.cross {
-    width: var(--icon-size);
-    margin: 0px var(--spacing-sm);
 }
 
 #emailValidation,
 #emptyPassword,
 #passwordValidation {
     color: var(--text-error);
-    font-weight: var(--font-light);
-    font-size: smaller;
-    padding: 0px;
-    margin-left: var(--spacing-sm);
     display: none;
+    font-size: smaller;
+    font-weight: var(--font-light);
+    margin-left: var(--spacing-sm);
+    padding: 0px;
+}
+
+.form_wrapper label{
+    margin: var(--spacing-md) 0px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    font-weight: var(--font-bold);
+
+    padding: var(--spacing-sm) 0px;
+}
+
+/* Additional form field styles */
+.email_form,
+.password_form {
+    display: flex;
+    flex-direction: column;
+    margin: var(--spacing-xs);
+}
+
+.email_form label,
+.password_form label {
+    margin: var(--spacing-md) 0px;
+}
+
+@media (max-width: var(--mobile-breakpoint)) {
+    .loginMain {
+        min-width: 0;
+        width: var(--form-mobile-width);
+    }
 }

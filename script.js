@@ -1,4 +1,3 @@
-
 const form = document.getElementById("myForm")
 console.log("Form found:", form)
 
@@ -13,121 +12,155 @@ if (form) {
     console.error("Form not found!")
 }
 
-function getFormData(form){
-    console.log("getFormData called with:", form)
-    var formData = new FormData(form);
-    const inputFormValues = Array.from(formData.values());
-    console.log("Form values:", inputFormValues)
-    const emailInput = inputFormValues[0]
-    const passwordInput = inputFormValues[1]
-    console.log("Email:", emailInput, "Password:", passwordInput)
-    validateFormData(form,emailInput, passwordInput)
+
+
+function getElement(id) {
+    return document.getElementById(id);
 }
 
+function showValidationMessage(elementId) {
+    const element = getElement(elementId);
+    if (element) {
+        element.style.display = "block";
+    }
+}
+
+function hideValidationMessage(elementId) {
+    const element = getElement(elementId);
+    if (element) {
+        element.style.display = "none";
+    }
+}
+
+function setInputBorderColor(inputId, color) {
+    const input = getElement(inputId);
+    if (input) {
+        input.style.borderColor = color;
+    }
+}
+
+function showInputError(validationElementId, inputId) {
+    showValidationMessage(validationElementId);
+    setInputBorderColor(inputId, 'var(--text-error)');
+}
+
+function resetInputStyle(inputId) {
+    setInputBorderColor(inputId, 'var(--border-color)');
+}
+
+
+
+function getFormData(form){
+
+    const formData = new FormData(form);
+    const emailInput = formData.get('email');
+    const passwordInput = formData.get('password');
+
+    validateFormData(form, emailInput, passwordInput)
+}
+
+
+
 function validateEmailInput(emailInput) {
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailPattern.test(emailInput);
+    if (!emailInput || emailInput.trim() === "") return false;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(emailInput);
 }
 
 function validatePasswordLength(passwordInput){
-    if(passwordInput.length==0){
-        return false
-    } else{
-        return true
-    }
+    return passwordInput && passwordInput.length > 0;
 }
 
 function validatePasswordInput(passwordInput) {
-  const passwordPattern = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
-  return passwordPattern.test(passwordInput);
+    if (!passwordInput || passwordInput.trim() === "") return false;
+    const passwordPattern = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+    return passwordPattern.test(passwordInput);
 }
 
-function validateFormData(form,emailInput, passwordInput){
-    // Reset all validation messages and input styles first
-    resetValidationStyles()
+
+
+function validateFormData(form, emailInput, passwordInput){
+    resetValidationStyles();
     
-    let isEmailValid = validateEmailInput(emailInput)
-    let isPasswordLengthValid = validatePasswordLength(passwordInput)
-    let isPasswordValid = validatePasswordInput(passwordInput)
+    const validations = [
+        {
+            isValid: validateEmailInput(emailInput),
+            showError: () => notValidEmail(),
+            shouldShow: true  
+        },
+        {
+            isValid: validatePasswordLength(passwordInput),
+            showError: () => notValidPasswordLength(),
+            shouldShow: true 
+        },
+        {
+            isValid: validatePasswordInput(passwordInput),
+            showError: () => notValidPassword(),
+            shouldShow: passwordInput && passwordInput.trim() !== "" && validatePasswordLength(passwordInput)
+        }
+    ];
     
-    if(!isEmailValid){
-       notValidEmail()
-    }
+    let hasErrors = false;
     
-    if (!isPasswordLengthValid){
-        notValidPasswordLength()
-    } else if (!isPasswordValid){
-        notValidPassword()
-    }
-   
-    if(!isEmailValid || !isPasswordValid || !isPasswordLengthValid){
-        showValidationDiv()
-    } else{
-        hideValidationDiv()
+    validations.forEach(validation => {
+        if (validation.shouldShow && !validation.isValid) {
+            validation.showError();
+            hasErrors = true;
+        }
+    });
+    
+    if (hasErrors) {
+        showValidationDiv();
+    } else {
+        hideValidationDiv();
         console.log("form valid : submit triggered");
-        form.submit()
-
+        
+        alert("Login successful! Welcome to Brevo.");
+        
     }
 }
+
+
 
 function showValidationDiv(){
-    const validationDiv=document.getElementById("validationError")
-    validationDiv.style.display="block"
-
+    showValidationMessage("validationError");
 }
 
 function hideValidationDiv(){
-    const validationDiv=document.getElementById("validationError")
-    validationDiv.style.display="none"
+    hideValidationMessage("validationError");
 }
 
 function notValidEmail(){
-    const emailValidation=document.getElementById("emailValidation")
-    const inputOfEmail=document.getElementById("email")
-    emailValidation.style.display="block"
-    inputOfEmail.style.borderColor='#ff3a51';
+    showInputError("emailValidation", "email");
 }
 
 function notValidPasswordLength(){
-    const emptyPassword=document.getElementById("emptyPassword")
-    const inputOfPassword=document.getElementById("password")
-    emptyPassword.style.display="block"
-    inputOfPassword.style.borderColor='#ff3a51'
+    showInputError("emptyPassword", "password");
 }
 
 function notValidPassword(){
-    const passwordValidation=document.getElementById("passwordValidation")
-    const inputOfPassword=document.getElementById("password")
-    passwordValidation.style.display="block"
-    inputOfPassword.style.borderColor='#ff3a51'
+    showInputError("passwordValidation", "password");
 }
 
-//handling red div part
 function resetValidationStyles(){
-    const emailValidation = document.getElementById("emailValidation")
-    const emptyPassword = document.getElementById("emptyPassword")
-    const passwordValidation = document.getElementById("passwordValidation")
-    
-    emailValidation.style.display = "none"
-    emptyPassword.style.display = "none"
-    passwordValidation.style.display = "none"
+    const validationElements = ["emailValidation", "emptyPassword", "passwordValidation"];
+    const inputElements = ["email", "password"];
     
 
-    const inputOfEmail = document.getElementById("email")
-    const inputOfPassword = document.getElementById("password")
+    validationElements.forEach(elementId => {
+        hideValidationMessage(elementId);
+    });
     
-    inputOfEmail.style.borderColor = '#cfcfcf'
-    inputOfPassword.style.borderColor = '#cfcfcf'
+
+    inputElements.forEach(inputId => {
+        resetInputStyle(inputId);
+    });
 }
-
 
 function signInWithGoogle() {
-    console.log("Google sign-in clicked ");
+    console.log("Google sign-in clicked");
 }
 
 function signInWithApple() {
-    console.log("Apple sign-in clicked ");
+    console.log("Apple sign-in clicked");
 }
-
-
-

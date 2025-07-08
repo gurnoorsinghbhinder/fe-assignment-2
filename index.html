@@ -8,37 +8,37 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="loginBg">
-        <img class="brevoLogo" src="asset/brevoLogo.png" alt="logo">
-        <div class="loginMain">
-            <h2>Log In</h2>
-            <div class="validationError" id="validationError">
-                <p><span><img class="cross" src="asset/cross.png" alt=""></span>Incorrect email address or password.</p>
+    <div class="login_background">
+        <img class="brevo_logo" src="asset/brevoLogo.png" alt="logo">
+        <div class="login_container">
+            <h3>Log In</h3>
+            <div class="validation_error" id="validationError" aria-live="assertive">
+                <p><span><img class="error_icon" src="asset/cross.png" alt="Error Icon"></span>Incorrect email address or password.</p>
             </div>
-            <div class="myForm">
+            <div class="form_wrapper">
                <form id="myForm" action="/login" method="POST">
 
-                    <div class="emailForm">
-                        <label for="email">Email address <span class="asterisk">*</span></label>
+                    <div class="email_form">
+                        <label for="email">Email address <span class="required_field">*</span></label>
                         <input type="text" id="email" name="email">
                         <div id="emailValidation">Please enter a valid email address.</div>
                     </div>
 
-                    <div class="passwordForm">
-                        <label for="password">Password <span class="asterisk">*</span></label>
+                    <div class="password_form">
+                        <label for="password">Password <span class="required_field">*</span></label>
                         <input type="password" id="password" name="password">
                         <div id="emptyPassword">Password cannot be blank.</div>
                         <div id="passwordValidation">Password should be minimum 8 characters, with at least one capital letter and one number.</div>
                     </div>
 
-                    <button class="logIn" type="submit">Log In</button>
-                    <hr class="afterLoginHr">
-                    <div>
-                        <button class="signIn" type="button" onclick="signInWithGoogle()">
+                    <button class="log_in_button" type="submit">Log In</button>
+                    <hr class="after_login_horizontal">
+                    <div class="social_sign_in_buttons">
+                        <button class="social_sign_in" type="button" onclick="signInWithGoogle()">
                           <img src="asset/googleLogo.png"  alt="google logo" >
                             Sign in with Google
                         </button>
-                        <button id="signInBtn" class="signIn" type="button" onclick="signInWithApple()">
+                        <button id="signInBtn" class="social_sign_in" type="button" onclick="signInWithApple()">
                             <img src="asset/appleLogo.png" alt="apple logo" >
                             Sign in with Apple</button>
                     </div>
@@ -49,9 +49,9 @@
      
         </div>
 
-        <div class="lowbars">
-            <a href="https://onboarding.brevo.com/account/register" class="createAcc">Create an account</a>
-            <a href="https://login.brevo.com/forgot-password" class="forgotPassword">I forgot my password</a>
+        <div class="navigation_links">
+            <a href="https://onboarding.brevo.com/account/register" class="create_account">Create an account</a>
+            <a href="https://login.brevo.com/forgot-password" class="forgot_password">I forgot my password</a>
         </div>
 
     </div>
